@@ -30,7 +30,7 @@ class BaseDialogFragment : DialogFragment() {
      * 父类同名方法简化
      */
     fun show(fragment: Fragment) {
-        show(fragment.getFragmentManager(), fragment::class.java.getName())
+        show(fragment.getFragmentManager()!!, fragment::class.java.getName())
     }
 
     /**
@@ -42,8 +42,8 @@ class BaseDialogFragment : DialogFragment() {
 
 
 
-    override fun show(transaction: FragmentTransaction, tag: String): Int {
-        return if (!isRepeatedShow(tag)) {
+    override fun show(transaction: FragmentTransaction, tag: String?): Int {
+        return if (!isRepeatedShow(tag!!)) {
             super.show(transaction, tag)
         } else -1
     }
